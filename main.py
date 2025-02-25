@@ -34,6 +34,5 @@ for year in range(2010,2021):
         orders_total_profit_pivot_table = pd.pivot_table(orders,index=['Country'],columns=['Order Priority'],values=['Total Profit'],aggfunc='sum')
         print(f'{year}_orders_total_profit_pivot_table:\n',orders_total_profit_pivot_table)
         orders_total_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_total_profit_per_country_pivot_table.csv')
-        
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
