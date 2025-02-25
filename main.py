@@ -22,17 +22,30 @@ print('\ncombined_raw_csvs:\n',combined_raw_csvs.sort_values(by=['Order Date'], 
 total_orders_per_day = combined_raw_csvs.groupby(['Order Date']).agg(
     units_sold = ('Units Sold','sum')
 )
-print('total orders per day\n',total_orders_per_day)
+print('total orders per day:\n',total_orders_per_day)
 total_orders_per_day.to_csv('new_csvs/total_orders_per_day.csv')
+
+total_orders_per_year_per_country = combined_raw_csvs.groupby(['Country','Calendar Year']).agg(
+    units_sold = ('Units Sold','sum')
+)
+print('total orders per year per country:\n',total_orders_per_year_per_country)
+total_orders_per_year_per_country.to_csv('new_csvs/total_orders_per_year_per_country.csv')
+
+total_orders_per_year_per_country_top_15 = total_orders_per_year_per_country.sort_values(by=['units_sold'], ascending=False).head(15)
+print('total orders per year per country top 15:\n',total_orders_per_year_per_country_top_15)
+total_orders_per_year_per_country_top_15.to_csv('new_csvs/total_orders_per_year_per_country_top_15.csv')
 
 for year in range(2010,2021):
     try:
         calendar_year = combined_raw_csvs.loc[combined_raw_csvs['Calendar Year'] == year]
         calendar_year.to_csv(f'new_csvs/{year}_orders.csv', index=False)
-        # orders
+        # orders by year
         orders = pd.read_csv(f'new_csvs/{year}_orders.csv')
         orders_total_profit_pivot_table = pd.pivot_table(orders,index=['Country'],columns=['Order Priority'],values=['Total Profit'],aggfunc='sum')
         print(f'{year}_orders_total_profit_pivot_table:\n',orders_total_profit_pivot_table)
         orders_total_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_total_profit_per_country_pivot_table.csv')
+        orders_average_profit_pivot_table = pd.pivot_table(orders,index=['Country'],columns=['Order Priority'],values=['Total Profit'],aggfunc='mean')
+        print(f'{year}_orders_average_profit_pivot_table:\n',orders_average_profit_pivot_table)
+        orders_average_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_average_profit_per_country_pivot_table.csv')
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
