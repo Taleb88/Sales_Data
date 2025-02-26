@@ -36,6 +36,18 @@ total_orders_per_year_per_country_top_15 = total_orders_per_year_per_country.sor
 print('total orders per year per country top 15:\n',total_orders_per_year_per_country_top_15)
 total_orders_per_year_per_country_top_15.to_csv('new_csvs/total_orders_per_year_per_country_top_15.csv')
 
+print('\nRegion unique values:\n',combined_raw_csvs['Region'].sort_values(ascending=True).unique())
+print('\nCountry unique values:\n',combined_raw_csvs['Country'].sort_values(ascending=True).unique())
+print('\nItem Type unique values:\n',combined_raw_csvs['Item Type'].sort_values(ascending=True).unique())
+print('\nSales Channel unique values:\n',combined_raw_csvs['Sales Channel'].sort_values(ascending=True).unique())
+print('\nOrder Priority unique values:\n',combined_raw_csvs['Order Priority'].sort_values(ascending=True).unique())
+print('\nUnits Sold unique values:\n',combined_raw_csvs['Units Sold'].sort_values(ascending=True).unique())
+print('\nUnit Price unique values:\n',combined_raw_csvs['Unit Price'].sort_values(ascending=True).unique())
+print('\nUnit Cost unique values:\n',combined_raw_csvs['Unit Cost'].sort_values(ascending=True).unique())
+print('\nTotal Revenue unique values:\n',combined_raw_csvs['Total Revenue'].sort_values(ascending=True).unique())
+print('\nTotal Cost unique values:\n',combined_raw_csvs['Total Cost'].sort_values(ascending=True).unique())
+print('\nTotal Profit unique values:\n',combined_raw_csvs['Total Profit'].sort_values(ascending=True).unique())
+
 for year in range(2010,2021):
     try:
         calendar_year = combined_raw_csvs.loc[combined_raw_csvs['Calendar Year'] == year]
@@ -50,15 +62,3 @@ for year in range(2010,2021):
         orders_average_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_average_profit_per_country_pivot_table.csv')
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
-
-print('\nRegion unique values:\n',combined_raw_csvs['Region'].sort_values(ascending=True).unique())
-print('\nCountry unique values:\n',combined_raw_csvs['Country'].sort_values(ascending=True).unique())
-print('\nItem Type unique values:\n',combined_raw_csvs['Item Type'].sort_values(ascending=True).unique())
-print('\nSales Channel unique values:\n',combined_raw_csvs['Sales Channel'].sort_values(ascending=True).unique())
-print('\nOrder Priority unique values:\n',combined_raw_csvs['Order Priority'].sort_values(ascending=True).unique())
-print('\nUnits Sold unique values:\n',combined_raw_csvs['Units Sold'].sort_values(ascending=True).unique())
-print('\nUnit Price unique values:\n',combined_raw_csvs['Unit Price'].sort_values(ascending=True).unique())
-print('\nUnit Cost unique values:\n',combined_raw_csvs['Unit Cost'].sort_values(ascending=True).unique())
-print('\nTotal Revenue unique values:\n',combined_raw_csvs['Total Revenue'].sort_values(ascending=True).unique())
-print('\nTotal Cost unique values:\n',combined_raw_csvs['Total Cost'].sort_values(ascending=True).unique())
-print('\nTotal Profit unique values:\n',combined_raw_csvs['Total Profit'].sort_values(ascending=True).unique())
