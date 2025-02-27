@@ -71,13 +71,16 @@ for year in range(2010,2021):
                 # item type to be in third nested for loop
                 item_types_list =  ['Baby Food','Beverages','Cereal','Clothes','Cosmetics','Fruits','Household','Meat','Office Supplies','Personal Care','Snacks','Vegetables']
                 for item_type in item_types_list:
-                    def filter(df):
-                        try:
-                            return df[(df['Region'] == region) & (df['Calendar Year'] == year) & (df['Item Type'] == item_type)]
-                        except Exception as e:
-                            print(f'cannot filter rows accordingly - {type(e)}')
-                item_type_orders_by_region = filter(combined_raw_csvs)
-                item_type_orders_by_region.to_csv(f'new_csvs/{year}_{region}_{item_type}_orders.csv',index=False)
+                    try:
+                        def filter(df):
+                            try:
+                                return df[(df['Region'] == region) & (df['Calendar Year'] == year) & (df['Item Type'] == item_type)]
+                            except Exception as e:
+                                print(f'cannot filter rows accordingly - {type(e)}')
+                            item_type_orders_by_region = filter(combined_raw_csvs)
+                            print(f'{region} {year} {item_type} orders:\n',item_type_orders_by_region)
+                    except Exception as e:
+                        print(f'error - cannot filter rows accordingly - {type(e)}') 
             except Exception as e:
                 print(f'error - cannot filter rows accordingly - {type(e)}')         
     except Exception as e:
