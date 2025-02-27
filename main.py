@@ -48,6 +48,7 @@ print('\nTotal Revenue unique values:\n',combined_raw_csvs['Total Revenue'].sort
 print('\nTotal Cost unique values:\n',combined_raw_csvs['Total Cost'].sort_values(ascending=True).unique())
 print('\nTotal Profit unique values:\n',combined_raw_csvs['Total Profit'].sort_values(ascending=True).unique())
 
+regions_list =  ['Asia','Australia and Oceania','Central America and the Caribbean','Europe','Middle East and North Africa','North America','Sub-Saharan Africa']
 for year in range(2010,2021):
     try:
         calendar_year = combined_raw_csvs.loc[combined_raw_csvs['Calendar Year'] == year]
@@ -61,15 +62,22 @@ for year in range(2010,2021):
         print(f'{year}_orders_average_profit_pivot_table:\n',orders_average_profit_pivot_table)
         orders_average_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_average_profit_per_country_pivot_table.csv')
         # annual orders by region
-        regions_list =  ['Asia','Australia and Oceania','Central America and the Caribbean','Europe','Middle East and North Africa','North America','Sub-Saharan Africa']
         for region in regions_list:
             try:
                 orders_by_region = combined_raw_csvs.loc[combined_raw_csvs['Region'] == region]
                 orders_by_region.to_csv(f'new_csvs/{region}_orders.csv',index=False)
                 annual_orders_by_region = combined_raw_csvs.loc[(combined_raw_csvs['Region'] == region) & (combined_raw_csvs['Calendar Year'] == year)]
                 annual_orders_by_region.to_csv(f'new_csvs/{year}_{region}_orders.csv',index=False)
-                # item type to be in third nested for loop
-                item_types_list =  ['Baby Food','Beverages','Cereal','Clothes','Cosmetics','Fruits','Household','Meat','Office Supplies','Personal Care','Snacks','Vegetables']
+            except Exception as e:
+                print(f'error - cannot filter rows accordingly - {type(e)}')         
+    except Exception as e:
+        print(f'error - cannot filter rows accordingly - {type(e)}')
+# multi-nested for loop utilize to display annual orders by region of specific items
+item_types_list =  ['Baby Food','Beverages','Cereal','Clothes','Cosmetics','Fruits','Household','Meat','Office Supplies','Personal Care','Snacks','Vegetables']
+for year in range(2010,2021):
+    try:    
+        for region in regions_list:
+            try:
                 for item_type in item_types_list:
                     try:
                         def filter(df):
@@ -77,12 +85,13 @@ for year in range(2010,2021):
                                 return df[(df['Region'] == region) & (df['Calendar Year'] == year) & (df['Item Type'] == item_type)]
                             except Exception as e:
                                 print(f'cannot filter rows accordingly - {type(e)}')
-                            item_type_orders_by_region = filter(combined_raw_csvs)
-                            print(f'{region} {year} {item_type} orders:\n',item_type_orders_by_region)
+                        item_type_orders_by_region = filter(combined_raw_csvs)
+                        item_type_orders_by_region.drop(["Unnamed: 0.2","Unnamed: 0.1","Unnamed: 0"],axis=1,inplace=True)
+                        print(f'{region} {year} {item_type} orders:\n',item_type_orders_by_region)
                     except Exception as e:
-                        print(f'error - cannot filter rows accordingly - {type(e)}') 
+                        print(f'error - cannot filter rows accordingly - {type(e)}')
             except Exception as e:
-                print(f'error - cannot filter rows accordingly - {type(e)}')         
+                print(f'error - cannot filter rows accordingly - {type(e)}')             
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
 

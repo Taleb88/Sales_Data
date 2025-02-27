@@ -24,6 +24,7 @@ for year in range(2010,2012):
             def filter(df):
                 return df[(df['Region'] == region) & (df['Calendar Year'] == year) & (df['Item Type'] == item_type)]
             item_type_orders_by_region = filter(combined_raw_csvs)
+            item_type_orders_by_region.drop(["Unnamed: 0.2","Unnamed: 0.1","Unnamed: 0"],axis=1,inplace=True)
             print(f'{region} - {year} - {item_type} :\n',item_type_orders_by_region)
 
 # 2/26/2025 - COMPLETE - SUCCESS
