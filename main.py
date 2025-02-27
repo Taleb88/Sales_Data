@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 raw_csv_1 = pd.read_csv('raw_csvs/Sales Records - 1.csv',low_memory=False)
 raw_csv_2 = pd.read_csv('raw_csvs/Sales Records - 2.csv',low_memory=False)
@@ -103,6 +104,5 @@ print('sub-saharan africa orders part 1:\n',sub_saharan_africa_orders_part_1)
 print('sub-saharan africa orders part 2:\n',sub_saharan_africa_orders_part_2)
 
 # remove combined csvs after splits
-import os
 os.remove('new_csvs/Europe_orders.csv')
 os.remove('new_csvs/Sub-Saharan Africa_orders.csv')
