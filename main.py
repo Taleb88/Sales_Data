@@ -73,7 +73,7 @@ for year in range(2010,2021):
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
 
-# # split 2 csvs (new_csvs/Europe_orders.csv and new_csvs/Sub-Saharan Africa_orders.csv)
+# split 2 csvs (new_csvs/Europe_orders.csv and new_csvs/Sub-Saharan Africa_orders.csv)
 num_of_files = 2
 num_of_rows = 650000
 for x in range(num_of_files):
