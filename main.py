@@ -64,6 +64,8 @@ for year in range(2010,2021):
         regions_list =  ['Asia','Australia and Oceania','Central America and the Caribbean','Europe','Middle East and North Africa','North America','Sub-Saharan Africa']
         for region in regions_list:
             try:
+                orders_by_region = combined_raw_csvs.loc[combined_raw_csvs['Region'] == region]
+                orders_by_region.to_csv(f'new_csvs/{region}_orders.csv',index=False)
                 annual_orders_by_region = combined_raw_csvs.loc[(combined_raw_csvs['Region'] == region) & (combined_raw_csvs['Calendar Year'] == year)]
                 annual_orders_by_region.to_csv(f'new_csvs/{year}_{region}_orders.csv',index=False)
             except Exception as e:
@@ -71,27 +73,27 @@ for year in range(2010,2021):
     except Exception as e:
         print(f'error - cannot filter rows accordingly - {type(e)}')
 
-# # split 2 csvs (new_csvs/2010_Europe_orders.csv and new_csvs/2010_Sub-Saharan Africa_orders.csv)
-# num_of_files = 2
-# num_of_rows = 650000
-# for x in range(num_of_files):
-#     europe_orders_2010 = pd.read_csv('new_csvs/2010_Europe_orders.csv')
-#     sub_saharan_africa_orders_2010 = pd.read_csv('new_csvs/2010_Sub-Saharan Africa_orders.csv')
-#     europe_orders_2010_df = europe_orders_2010[num_of_rows*x:num_of_rows*(x+1)]
-#     sub_saharan_africa_orders_2010_df = sub_saharan_africa_orders_2010[num_of_rows*x:num_of_rows*(x+1)]
-#     europe_orders_2010_df.to_csv(f'new_csvs/2010_Europe_orders_{x+1}.csv',index=False)
-#     sub_saharan_africa_orders_2010_df.to_csv(f'new_csvs/2010_Sub-Saharan Africa_orders_{x+1}.csv',index=False)
+# # split 2 csvs (new_csvs/Europe_orders.csv and new_csvs/Sub-Saharan Africa_orders.csv)
+num_of_files = 2
+num_of_rows = 650000
+for x in range(num_of_files):
+    europe_orders = pd.read_csv('new_csvs/Europe_orders.csv')
+    sub_saharan_africa_orders = pd.read_csv('new_csvs/Sub-Saharan Africa_orders.csv')
+    europe_orders_df = europe_orders[num_of_rows*x:num_of_rows*(x+1)]
+    sub_saharan_africa_orders_df = sub_saharan_africa_orders[num_of_rows*x:num_of_rows*(x+1)]
+    europe_orders_df.to_csv(f'new_csvs/Europe_orders_{x+1}.csv',index=False)
+    sub_saharan_africa_orders_df.to_csv(f'new_csvs/Sub-Saharan Africa_orders_{x+1}.csv',index=False)
 
-# europe_orders_2010_part_1 = pd.read_csv('new_csvs/2010_Europe_orders_1.csv')
-# europe_orders_2010_part_2 = pd.read_csv('new_csvs/2010_Europe_orders_2.csv')
-# print('europe orders 2010_part_1\n:',europe_orders_2010_part_1)
-# print('europe orders 2010 part_2\n:',europe_orders_2010_part_2)
-# sub_saharan_africa_orders_2010_part_1 = pd.read_csv('new_csvs/2010_Sub-Saharan Africa_orders_1.csv')
-# sub_saharan_africa_orders_2010_part_2 = pd.read_csv('new_csvs/2010_Sub-Saharan Africa_orders_2.csv')
-# print('sub-saharan africa orders 2010 part 1\n:',sub_saharan_africa_orders_2010_part_1)
-# print('sub-saharan africa orders 2010 part 2\n:',sub_saharan_africa_orders_2010_part_2)
+europe_orders_part_1 = pd.read_csv('new_csvs/Europe_orders_1.csv')
+europe_orders_part_2 = pd.read_csv('new_csvs/Europe_orders_2.csv')
+print('europe orders part 1\n:',europe_orders_part_1)
+print('europe orders part 2\n:',europe_orders_part_2)
+sub_saharan_africa_orders_part_1 = pd.read_csv('new_csvs/Sub-Saharan Africa_orders_1.csv')
+sub_saharan_africa_orders_part_2 = pd.read_csv('new_csvs/Sub-Saharan Africa_orders_2.csv')
+print('sub-saharan africa orders part 1\n:',sub_saharan_africa_orders_part_1)
+print('sub-saharan africa orders part 2\n:',sub_saharan_africa_orders_part_2)
 
-# # remove combined csvs after splits
-# import os
-# os.remove('new_csvs/2010_Europe_orders.csv')
-# os.remove('new_csvs/2010_Sub-Saharan Africa_orders.csv')
+# remove combined csvs after splits
+import os
+os.remove('new_csvs/Europe_orders.csv')
+os.remove('new_csvs/Sub-Saharan Africa_orders.csv')
