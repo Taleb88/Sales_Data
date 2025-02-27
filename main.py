@@ -86,12 +86,12 @@ for x in range(num_of_files):
 
 europe_orders_part_1 = pd.read_csv('new_csvs/Europe_orders_1.csv')
 europe_orders_part_2 = pd.read_csv('new_csvs/Europe_orders_2.csv')
-print('europe orders part 1\n:',europe_orders_part_1)
-print('europe orders part 2\n:',europe_orders_part_2)
+print('europe orders part 1:\n',europe_orders_part_1)
+print('europe orders part 2:\n',europe_orders_part_2)
 sub_saharan_africa_orders_part_1 = pd.read_csv('new_csvs/Sub-Saharan Africa_orders_1.csv')
 sub_saharan_africa_orders_part_2 = pd.read_csv('new_csvs/Sub-Saharan Africa_orders_2.csv')
-print('sub-saharan africa orders part 1\n:',sub_saharan_africa_orders_part_1)
-print('sub-saharan africa orders part 2\n:',sub_saharan_africa_orders_part_2)
+print('sub-saharan africa orders part 1:\n',sub_saharan_africa_orders_part_1)
+print('sub-saharan africa orders part 2:\n',sub_saharan_africa_orders_part_2)
 
 # remove combined csvs after splits
 import os
