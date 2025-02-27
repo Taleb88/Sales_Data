@@ -70,12 +70,13 @@ for year in range(2010,2021):
                 orders_by_region.to_csv(f'new_csvs/{region}_orders.csv',index=False)
                 annual_orders_by_region = combined_raw_csvs.loc[(combined_raw_csvs['Region'] == region) & (combined_raw_csvs['Calendar Year'] == year)]
                 annual_orders_by_region.to_csv(f'new_csvs/{year}_{region}_orders.csv',index=False)
+                # specific items ordered by region annually
                 for item_type in item_types_list:
                     try:
                         def filter(df):
                             return df[(df['Region'] == region) & (df['Calendar Year'] == year) & (df['Item Type'] == item_type)]
-                        item_type_orders_by_region = filter(combined_raw_csvs)
-                        print(f'{region} - {year} Orders - {item_type}:\n',item_type_orders_by_region)
+                        item_type_orders_by_region_annually = filter(combined_raw_csvs)
+                        print(f'{region} - {year} Orders - {item_type}:\n',item_type_orders_by_region_annually)
                     except Exception as e:
                         print(f'error - cannot filter rows accordingly - {type(e)}')                     
             except Exception as e:
