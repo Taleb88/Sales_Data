@@ -11,7 +11,7 @@ for year in range(2010,2021):
             new_csv_data.append([year,row['Region'],row['Country'],row['Item Type'],row['Sales Channel'],row['Order Priority'],row['Order Date'],row['Order ID'],
                                  row['Ship Date'],row['Units Sold'],row['Unit Price'],row['Unit Cost'],row['Total Revenue'],row['Total Cost'],row['Total Profit'],row['Calendar Year']
                                  ])
-# write to new csv with combined data
+# write to new csv with combined dfs
 with open('test.csv','w') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Region','Country','Item Type','Sales Channel','Order Priority','Order Date','Order ID','Ship Date','Units Sold','Unit Price','Unit Cost','Total Revenue',
