@@ -12,7 +12,7 @@ for year in range(2010,2021):
                                  row['Ship Date'],row['Units Sold'],row['Unit Price'],row['Unit Cost'],row['Total Revenue'],row['Total Cost'],row['Total Profit'],row['Calendar Year']
                                  ])
 # write to new csv with combined dfs
-with open('test.csv','w') as csvfile:
+with open('new_csvs/test.csv','w') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Region','Country','Item Type','Sales Channel','Order Priority','Order Date','Order ID','Ship Date','Units Sold','Unit Price','Unit Cost','Total Revenue',
                      'Total Cost','Total Profit','Calendar Year'
