@@ -1,4 +1,4 @@
-# 3/10/2025 - COMPLETE - SUCCESS - TO BE IMPLEMENTED
+# 3/10/2025 - COMPLETE - SUCCESS - MIGHT BE IMPLEMENTED
 import pandas as pd
 import csv
 
@@ -11,13 +11,17 @@ for year in range(2010,2021):
             new_csv_data.append([year,row['Region'],row['Country'],row['Item Type'],row['Sales Channel'],row['Order Priority'],row['Order Date'],row['Order ID'],
                                  row['Ship Date'],row['Units Sold'],row['Unit Price'],row['Unit Cost'],row['Total Revenue'],row['Total Cost'],row['Total Profit'],row['Calendar Year']
                                  ])
-# write to new csv with combined dfs
-with open('new_csvs/test.csv','w') as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(['Region','Country','Item Type','Sales Channel','Order Priority','Order Date','Order ID','Ship Date','Units Sold','Unit Price','Unit Cost','Total Revenue',
-                     'Total Cost','Total Profit','Calendar Year'
-                    ])
-    writer.writerows(new_csv_data)
+    # write to new csv with combined dfs
+    with open('new_csvs/test.csv','w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Region','Country','Item Type','Sales Channel','Order Priority','Order Date','Order ID','Ship Date','Units Sold','Unit Price','Unit Cost','Total Revenue',
+                        'Total Cost','Total Profit','Calendar Year'
+                        ])
+        writer.writerows(new_csv_data)
+
+    new_df = pd.read_csv('new_csvs/test.csv')
+    new_df['Region'] = new_df['Region'].replace({year},'North America')
+    new_df.to_csv('new_csvs/test.csv', index=False)
 
 # # 3/10/2025 - COMPLETE - SUCCESS - TO BE IMPLEMENTED
 # import pandas as pd
