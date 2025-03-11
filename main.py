@@ -64,9 +64,14 @@ for year in range(2010,2021):
         orders_average_profit_pivot_table = pd.pivot_table(orders,index=['Country'],columns=['Order Priority'],values=['Total Profit'],aggfunc='mean')
         print(f'{year}_orders_average_profit_pivot_table:\n',orders_average_profit_pivot_table)
         orders_average_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_average_profit_per_country_pivot_table.csv')
-        # holiday orders
-        united_states_of_america_holidays = [f"1/1/{year}",f"2/12/{year}",f"2/14/{year}",f"6/19/{year}",f"7/4/{year}",f"10/31/{year}",f"12/31/{year}",f"12/31/{year}"]
-        united_states_of_america_holidays_orders = combined_raw_csvs.loc[(combined_raw_csvs['Order Date'] == united_states_of_america_holidays) & (combined_raw_csvs['Region'] == 'North America')]
+        # united states of america holiday orders
+        def united_states_of_america_holidays(df):
+            try: 
+                return df[(df['Country'] == 'United States of America') & ((df['Order Date'] == f"1/1/{year}") | (df['Order Date'] == f"2/12/{year}") |
+                        (df['Order Date'] == f"6/19/{year}") | (df['Order Date'] == f"7/4/{year}") | (df['Order Date'] == f"10/31/{year}") | (df['Order Date'] == f"12/31/{year}"))]
+            except Exception as e:
+                print(f'cannot filter dataframes to contain holiday values only - e - {type(e)}')
+        united_states_of_america_holidays_orders = united_states_of_america_holidays(combined_raw_csvs)
         print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders)
         united_states_of_america_holidays_orders.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders.csv', index=False)
         # annual orders by region
