@@ -49,7 +49,6 @@ print('\nTotal Revenue unique values:\n',combined_raw_csvs['Total Revenue'].sort
 print('\nTotal Cost unique values:\n',combined_raw_csvs['Total Cost'].sort_values(ascending=True).unique())
 print('\nTotal Profit unique values:\n',combined_raw_csvs['Total Profit'].sort_values(ascending=True).unique())
 
-
 regions_list =  ['Asia','Australia and Oceania','Central America and the Caribbean','Europe','Middle East and North Africa','North America','Sub-Saharan Africa']
 item_types_list =  ['Baby Food','Beverages','Cereal','Clothes','Cosmetics','Fruits','Household','Meat','Office Supplies','Personal Care','Snacks','Vegetables']
 for year in range(2010,2021):
@@ -64,16 +63,36 @@ for year in range(2010,2021):
         orders_average_profit_pivot_table = pd.pivot_table(orders,index=['Country'],columns=['Order Priority'],values=['Total Profit'],aggfunc='mean')
         print(f'{year}_orders_average_profit_pivot_table:\n',orders_average_profit_pivot_table)
         orders_average_profit_pivot_table.to_csv(f'new_csvs/{year}_orders_average_profit_per_country_pivot_table.csv')
-        # united states of america holiday orders
-        def united_states_of_america_holidays(df):
+        # united states holiday orders - holidays on exact dates
+        def united_states_of_america_holidays_exact_dates(df):
             try: 
                 return df[(df['Country'] == 'United States of America') & ((df['Order Date'] == f"1/1/{year}") | (df['Order Date'] == f"2/12/{year}") |
-                        (df['Order Date'] == f"6/19/{year}") | (df['Order Date'] == f"7/4/{year}") | (df['Order Date'] == f"10/31/{year}") | (df['Order Date'] == f"12/31/{year}"))]
+                          (df['Order Date'] == f"6/19/{year}") | (df['Order Date'] == f"7/4/{year}") | (df['Order Date'] == f"10/31/{year}") | (df['Order Date'] == f"12/31/{year}"))]
             except Exception as e:
-                print(f'cannot filter dataframes to contain holiday values only - e - {type(e)}')
-        united_states_of_america_holidays_orders = united_states_of_america_holidays(combined_raw_csvs)
+                print(f'cannot filter dataframes to holiday exact dates - e - {type(e)}')
+        united_states_of_america_holidays_orders = united_states_of_america_holidays_exact_dates(combined_raw_csvs)
         print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders)
         united_states_of_america_holidays_orders.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders.csv', index=False)
+        # united states holidays orders - holidays on non-exact dates
+        def united_states_of_america_holidays_non_exact_dates(df):
+            try:
+                return df[(df['Country'] == 'United States of America') & ((df['Order Date'] == "1/18/2010") | (df['Order Date'] == "1/17/2011") | 
+                          (df['Order Date'] == "1/16/2012") | (df['Order Date'] == "1/21/2013") | (df['Order Date'] == "1/20/2014") | (df['Order Date'] == "1/19/2015") | 
+                          (df['Order Date'] == "1/18/2016") | (df['Order Date'] == "1/16/2017") | (df['Order Date'] == "1/15/2018") | (df['Order Date'] == "1/21/2019") | 
+                          (df['Order Date'] == "1/20/2020") | (df['Order Date'] == "2/15/2010") | (df['Order Date'] == "2/21/2011") | (df['Order Date'] == "2/20/2012") | 
+                          (df['Order Date'] == "2/18/2013") | (df['Order Date'] == "1/17/2014") | (df['Order Date'] == "2/16/2015") | (df['Order Date'] == "2/15/2016") | 
+                          (df['Order Date'] == "2/20/2017") | (df['Order Date'] == "2/19/2018") | (df['Order Date'] == "2/18/2019") | (df['Order Date'] == "2/17/2020") | 
+                          (df['Order Date'] == "5/31/2010") | (df['Order Date'] == "5/30/2011") | (df['Order Date'] == "5/28/2012") | (df['Order Date'] == "5/27/2013") |
+                          (df['Order Date'] == "5/26/2014") | (df['Order Date'] == "5/25/2015") | (df['Order Date'] == "5/30/2016") | (df['Order Date'] == "5/29/2017") | 
+                          (df['Order Date'] == "5/28/2018") | (df['Order Date'] == "5/27/2019") | (df['Order Date'] == "5/25/2020"))]
+            except Exception as e:
+                print(f'cannot filter dataframes to holiday non-exact dates - e - {type(e)}')
+        united_states_of_america_holidays_orders_2 = united_states_of_america_holidays_non_exact_dates(orders)
+        print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders_2)
+        united_states_of_america_holidays_orders_2.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders_2.csv', index=False)
+        # combining dataframes containing orders on holidays in united states of america into a single dataframe
+        # united_states_of_america_holidays_orders_csvs = pd.concat([NAMES OF CSVS ONLY, NO VARIABLES])
+        # united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
         # annual orders by region
         for region in regions_list:
             try:

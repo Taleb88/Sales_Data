@@ -1,5 +1,29 @@
 
 
+# # 3/10/2025-3/11/2025 - COMPLETE - WILL NOT BE USED
+# import pandas as pd
+
+# raw_csv_1 = pd.read_csv('raw_csvs/Sales Records - 1.csv',low_memory=False)
+# raw_csv_2 = pd.read_csv('raw_csvs/Sales Records - 2.csv',low_memory=False)
+# raw_csv_3 = pd.read_csv('raw_csvs/Sales Records - 3.csv',low_memory=False)
+# raw_csv_4 = pd.read_csv('raw_csvs/Sales Records - 4.csv',low_memory=False)
+# raw_csv_5 = pd.read_csv('raw_csvs/Sales Records - 5.csv',low_memory=False)
+# raw_csv_6 = pd.read_csv('raw_csvs/Sales Records - 6.csv',low_memory=False)
+# raw_csv_7 = pd.read_csv('raw_csvs/Sales Records - 7.csv',low_memory=False)
+# raw_csv_8 = pd.read_csv('raw_csvs/Sales Records - 8.csv',low_memory=False)
+# raw_csv_9 = pd.read_csv('raw_csvs/Sales Records - 9.csv',low_memory=False)
+# raw_csv_10 = pd.read_csv('raw_csvs/Sales Records - 10.csv',low_memory=False)
+
+# combined_raw_csvs = pd.concat([raw_csv_1,raw_csv_2,raw_csv_3,raw_csv_4,raw_csv_5,raw_csv_6,raw_csv_7,raw_csv_8,raw_csv_9,raw_csv_10])
+
+# for year in range(2010, 2015):
+#     mlk_day = ['1/18','1/19']
+#     for days in mlk_day:
+#         testing = combined_raw_csvs.loc[(combined_raw_csvs['Order Date'] == f'{days}/{year}') & (combined_raw_csvs['Calendar Year'] == year)]
+#         print(testing)
+#         testing.to_csv(f'{year}_test.csv', index=False)
+
+
 # # 3/10/2025 - COMPLETE - SUCCESS - MIGHT BE IMPLEMENTED
 # import pandas as pd
 # import csv
