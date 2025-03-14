@@ -70,9 +70,9 @@ for year in range(2010,2021):
                           (df['Order Date'] == f"6/19/{year}") | (df['Order Date'] == f"7/4/{year}") | (df['Order Date'] == f"10/31/{year}") | (df['Order Date'] == f"12/31/{year}"))]
             except Exception as e:
                 print(f'cannot filter dataframes to holiday exact dates - e - {type(e)}')
-        united_states_of_america_holidays_orders = united_states_of_america_holidays_exact_dates(combined_raw_csvs)
-        print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders)
-        united_states_of_america_holidays_orders.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders.csv', index=False)
+        united_states_of_america_holidays_orders_1 = united_states_of_america_holidays_exact_dates(combined_raw_csvs)
+        print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders_1)
+        united_states_of_america_holidays_orders_1.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders.csv', index=False)
         # united states holidays orders - holidays on non-exact dates
         def united_states_of_america_holidays_non_exact_dates(df):
             try:
@@ -91,8 +91,8 @@ for year in range(2010,2021):
         print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders_2)
         united_states_of_america_holidays_orders_2.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders_2.csv', index=False)
         # combining dataframes containing orders on holidays in united states of america into a single dataframe
-        # united_states_of_america_holidays_orders_csvs = pd.concat([NAMES OF CSVS ONLY, NO VARIABLES])
-        # united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
+        united_states_of_america_holidays_orders_csvs = pd.concat([united_states_of_america_holidays_orders_1, united_states_of_america_holidays_orders_2])
+        united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
         # annual orders by region
         for region in regions_list:
             try:
