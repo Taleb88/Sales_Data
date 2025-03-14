@@ -73,7 +73,7 @@ for year in range(2010,2021):
         united_states_of_america_holidays_orders_1 = united_states_of_america_holidays_exact_dates(combined_raw_csvs)
         print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders_1)
         united_states_of_america_holidays_orders_1.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders.csv', index=False)
-        # united states holidays orders - holidays on non-exact dates
+        # united states holidays orders - holidays on non-exact dates (mlk day, president's day, memorial day, labor day, columbus/indigenous people's day, thanksgiving/turkey day)
         def united_states_of_america_holidays_non_exact_dates(df):
             try:
                 return df[(df['Country'] == 'United States of America') & ((df['Order Date'] == "1/18/2010") | (df['Order Date'] == "1/17/2011") | 
@@ -91,7 +91,39 @@ for year in range(2010,2021):
         print(f'{year}_united_states_of_america_holiday_orders:\n:',united_states_of_america_holidays_orders_2)
         united_states_of_america_holidays_orders_2.to_csv(f'new_csvs/{year}_united_states_of_america_holiday_orders_2.csv', index=False)
         # combining dataframes containing orders on holidays in united states of america into a single dataframe
-        united_states_of_america_holidays_orders_csvs = pd.concat([united_states_of_america_holidays_orders_1, united_states_of_america_holidays_orders_2])
+        united_states_of_america_holidays_orders_1_2010 = pd.read_csv('new_csvs/2010_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2011 = pd.read_csv('new_csvs/2011_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2012 = pd.read_csv('new_csvs/2012_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2013 = pd.read_csv('new_csvs/2013_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2014 = pd.read_csv('new_csvs/2014_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2015 = pd.read_csv('new_csvs/2015_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2016 = pd.read_csv('new_csvs/2016_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2017 = pd.read_csv('new_csvs/2017_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2018 = pd.read_csv('new_csvs/2018_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2019 = pd.read_csv('new_csvs/2019_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_1_2020 = pd.read_csv('new_csvs/2020_united_states_of_america_holiday_orders.csv')
+        united_states_of_america_holidays_orders_2_2010 = pd.read_csv('new_csvs/2010_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2011 = pd.read_csv('new_csvs/2011_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2012 = pd.read_csv('new_csvs/2012_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2013 = pd.read_csv('new_csvs/2013_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2014 = pd.read_csv('new_csvs/2014_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2015 = pd.read_csv('new_csvs/2015_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2016 = pd.read_csv('new_csvs/2016_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2017 = pd.read_csv('new_csvs/2017_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2018 = pd.read_csv('new_csvs/2018_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2019 = pd.read_csv('new_csvs/2019_united_states_of_america_holiday_orders_2.csv')
+        united_states_of_america_holidays_orders_2_2020 = pd.read_csv('new_csvs/2020_united_states_of_america_holiday_orders_2.csv')        
+        united_states_of_america_holidays_orders_csvs = pd.concat([united_states_of_america_holidays_orders_1_2010,united_states_of_america_holidays_orders_1_2011,
+                                                                   united_states_of_america_holidays_orders_1_2012,united_states_of_america_holidays_orders_1_2013,
+                                                                   united_states_of_america_holidays_orders_1_2014,united_states_of_america_holidays_orders_1_2015,
+                                                                   united_states_of_america_holidays_orders_1_2016,united_states_of_america_holidays_orders_1_2017,
+                                                                   united_states_of_america_holidays_orders_1_2018,united_states_of_america_holidays_orders_1_2019,
+                                                                   united_states_of_america_holidays_orders_1_2020,united_states_of_america_holidays_orders_2_2010,
+                                                                   united_states_of_america_holidays_orders_2_2011,united_states_of_america_holidays_orders_2_2012,
+                                                                   united_states_of_america_holidays_orders_2_2013,united_states_of_america_holidays_orders_2_2014,
+                                                                   united_states_of_america_holidays_orders_2_2015,united_states_of_america_holidays_orders_2_2016,
+                                                                   united_states_of_america_holidays_orders_2_2017,united_states_of_america_holidays_orders_2_2018,
+                                                                   united_states_of_america_holidays_orders_2_2019,united_states_of_america_holidays_orders_2_2020])
         united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
         # annual orders by region
         for region in regions_list:
