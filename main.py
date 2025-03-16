@@ -136,7 +136,17 @@ for year in range(2010,2021):
         united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
         # order priority - united states of america holiday orders
         for order_priority in order_priorities_list:
-            united_states_of_america_holidays_orders_csvs = pd.read_csv('new_csvs/united_states_of_america_holiday_orders_master.csv')
+            try:
+                united_states_of_america_holidays_order_priority = pd.read_csv('new_csvs/united_states_of_america_holiday_orders_master.csv')
+                united_states_of_america_holidays_order_priority.loc[united_states_of_america_holidays_order_priority['Order Priority'] == order_priority]
+                united_states_of_america_holidays_order_priority.to_csv(f'new_csvs/united_states_of_america_holiday_order_priority_{order_priority}.csv')
+                # filter sales channel - online/offline
+                united_states_of_america_holidays_order_priority_online = united_states_of_america_holidays_order_priority['Sales Channel'].isin(['Online'])
+                united_states_of_america_holidays_order_priority_online.to_csv(f'new_csvs/united_states_of_america_holiday_order_priority_{order_priority}_online.csv')
+                united_states_of_america_holidays_order_priority_offline = united_states_of_america_holidays_order_priority['Sales Channel'].isin(['Offline'])
+                united_states_of_america_holidays_order_priority_offline.to_csv(f'new_csvs/united_states_of_america_holiday_order_priority_{order_priority}_offline.csv')
+            except Exception as e:
+                print(f'error - cannot filter per priority - {type(e)}')
         # annual orders by region
         for region in regions_list:
             try:
