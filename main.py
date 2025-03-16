@@ -84,7 +84,15 @@ for year in range(2010,2021):
                           (df['Order Date'] == "2/20/2017") | (df['Order Date'] == "2/19/2018") | (df['Order Date'] == "2/18/2019") | (df['Order Date'] == "2/17/2020") | 
                           (df['Order Date'] == "5/31/2010") | (df['Order Date'] == "5/30/2011") | (df['Order Date'] == "5/28/2012") | (df['Order Date'] == "5/27/2013") |
                           (df['Order Date'] == "5/26/2014") | (df['Order Date'] == "5/25/2015") | (df['Order Date'] == "5/30/2016") | (df['Order Date'] == "5/29/2017") | 
-                          (df['Order Date'] == "5/28/2018") | (df['Order Date'] == "5/27/2019") | (df['Order Date'] == "5/25/2020"))]
+                          (df['Order Date'] == "5/28/2018") | (df['Order Date'] == "5/27/2019") | (df['Order Date'] == "5/25/2020") | (df['Order Date'] == "9/6/2010") | 
+                          (df['Order Date'] == "9/5/2011") | (df['Order Date'] == "9/3/2012") | (df['Order Date'] == "9/2/2013") | (df['Order Date'] == "9/1/2014") | 
+                          (df['Order Date'] == "9/7/2015") | (df['Order Date'] == "9/5/2016") | (df['Order Date'] == "9/4/2017") | (df['Order Date'] == "9/3/2018") | 
+                          (df['Order Date'] == "9/2/2019") | (df['Order Date'] == "9/7/2020") | (df['Order Date'] == "10/11/2010") | (df['Order Date'] == "10/10/2011") | 
+                          (df['Order Date'] == "10/8/2012") | (df['Order Date'] == "10/14/2013") | (df['Order Date'] == "10/13/2014") | (df['Order Date'] == "10/12/2015") | 
+                          (df['Order Date'] == "10/10/2016") | (df['Order Date'] == "10/9/2017") | (df['Order Date'] == "10/8/2018") | (df['Order Date'] == "10/14/2019") | 
+                          (df['Order Date'] == "10/12/2020") | (df['Order Date'] == "11/25/2010") | (df['Order Date'] == "11/24/2011") | (df['Order Date'] == "11/22/2012") | 
+                          (df['Order Date'] == "11/28/2013") | (df['Order Date'] == "11/27/2014") | (df['Order Date'] == "11/26/2015") | (df['Order Date'] == "11/24/2016") | 
+                          (df['Order Date'] == "11/23/2017") | (df['Order Date'] == "11/22/2018") | (df['Order Date'] == "11/28/2019") | (df['Order Date'] == "11/26/2020") )]
             except Exception as e:
                 print(f'cannot filter dataframes to holiday non-exact dates - e - {type(e)}')
         united_states_of_america_holidays_orders_2 = united_states_of_america_holidays_non_exact_dates(orders)
