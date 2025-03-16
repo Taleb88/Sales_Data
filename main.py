@@ -51,6 +51,7 @@ print('\nTotal Profit unique values:\n',combined_raw_csvs['Total Profit'].sort_v
 
 regions_list =  ['Asia','Australia and Oceania','Central America and the Caribbean','Europe','Middle East and North Africa','North America','Sub-Saharan Africa']
 item_types_list =  ['Baby Food','Beverages','Cereal','Clothes','Cosmetics','Fruits','Household','Meat','Office Supplies','Personal Care','Snacks','Vegetables']
+order_priorities_list =  ['C','H','L','M']
 for year in range(2010,2021):
     try:
         calendar_year = combined_raw_csvs.loc[combined_raw_csvs['Calendar Year'] == year]
@@ -133,6 +134,9 @@ for year in range(2010,2021):
                                                                    united_states_of_america_holidays_orders_2_2017,united_states_of_america_holidays_orders_2_2018,
                                                                    united_states_of_america_holidays_orders_2_2019,united_states_of_america_holidays_orders_2_2020])
         united_states_of_america_holidays_orders_csvs.to_csv('new_csvs/united_states_of_america_holiday_orders_master.csv',index=False)
+        # order priority - united states of america holiday orders
+        for order_priority in order_priorities_list:
+            united_states_of_america_holidays_orders_csvs = pd.read_csv('new_csvs/united_states_of_america_holiday_orders_master.csv')
         # annual orders by region
         for region in regions_list:
             try:
